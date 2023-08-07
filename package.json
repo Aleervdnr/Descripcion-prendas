@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage":"https://Aleervndr.github.io/Descripcion-prendas",
+  "homepage":"https://Aleervdnr.github.io/Descripcion-prendas",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
