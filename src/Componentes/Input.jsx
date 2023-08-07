@@ -1,12 +1,12 @@
-export default function Input({name,data,setData,styles}) {
+export default function Input({name,data,onChange,styles}) {
   return (
     <div className={`flex flex-col ${styles}`}>
             <label htmlFor={name} className="capitalize">{name}</label>
             <input 
                 className='w-full h-full text-black ' type="text" 
-                id={name}
+                name={name}
                 value={data}
-                onChange={(e)=>setData(e.target.value)}
+                onChange={onChange}
                 maxLength={50}/>
     </div>
   )

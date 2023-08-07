@@ -1,27 +1,26 @@
 import { useState } from "react";
 import "./App.css";
 import Logo from "../public/Logo.png";
-import Input from "./Componentes/Input";
+import Form from "./Componentes/Form";
+import { UseForm } from "./hook/useForm";
 
 function App() {
   const [esBuzo, setEsBuzo] = useState(true);
-  const [titulo, setTitulo] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [talle, setTalle] = useState("");
-  const [largo, setLargo] = useState("");
-  const [ancho, setAncho] = useState("");
-  const [precio, setPrecio] = useState("");
 
-  let tipos = ["Campera/Buzo", "Pantalon"];
+  const initialForm = {
+    titulo:"",
+    descripcion:"",
+    talle:"",
+    largo:"",
+    ancho:"",
+    precio:""
+}
 
-  const clearInputs = () => {
-    setTitulo("");
-    setDescripcion("");
-    setTalle("");
-    setLargo("");
-    setAncho("");
-    setPrecio("");
-  };
+const {formState,setFormState, onInputChange} = UseForm(initialForm)
+
+
+const {titulo, descripcion, talle, largo, ancho, precio} = formState
+
 
   return (
     <div className="bg-[#e72b1f] w-full min-h-screen px-2">
@@ -55,36 +54,11 @@ function App() {
               <h2 className="text-center font-bold text-xl">Pantalon</h2>
           }
 
-          <form className="">
-            <div className="grid grid-cols-2 gap-2 max-w-[370px] ">
-              <Input
-                name={"titulo"}
-                data={titulo}
-                setData={setTitulo}
-                styles={"col-span-2"}
-              />
-              <Input
-                name={"descripcion"}
-                data={descripcion}
-                setData={setDescripcion}
-                styles={"col-span-2 h-[80px] "}
-              />
-              <Input
-                name={"talle"}
-                data={talle}
-                setData={setTalle}
-                styles={""}
-              />
-              <Input name={"largo"} data={largo} setData={setLargo} />
-              {}
-              <Input name={esBuzo ? "ancho" : "cintura"} data={ancho} setData={setAncho} />
-              <Input name={"precio"} data={precio} setData={setPrecio} />
-            </div>
-          </form>
+          <Form onInputChange={onInputChange} formState={formState}/>
         </div>
 
         <button
-          onClick={clearInputs}
+          onClick={()=> setFormState(initialForm)}
           className="inline-block rounded bg-white text-black mt-2 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-red-200"
         >
           Limpiar
